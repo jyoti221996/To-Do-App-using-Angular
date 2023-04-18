@@ -1,13 +1,53 @@
-<div class="container">
-  <h1 class="text-center">TODO List By Jyoti</h1>
-  <app-add-todo (todoAdd)="addTodo($event)"></app-add-todo>
-  <h4>Your Todo</h4>
-  <div *ngIf="this.todoT.length === 0; else elseBlock">No Todos to display!!</div>
-  <ng-template #elseBlock>
-    <div *ngFor="let todo of todoT">
-      <!-- <li>{{todo.sno}} - {{todo.title}} - {{todo.desc}} - {{todo.active}}</li> -->
-      <app-todo-item [todo]="todo" (todoDelete)="deleteTodo($event)" (todoCheckbox)="todoToggle($event)">
-      </app-todo-item>
+<div class="">
+  <div class="card">
+    <div class="card-header  text-white">
+      <h1 class="text-center">TODO List By Jyoti</h1>
     </div>
-  </ng-template>
+    <div class="card-body">
+      <div class="d-flex justify-content-end align-items-end">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+          <i class="fa fa-plus-circle" aria-hidden="true"></i> Add New TODO
+        </button>
+      </div>
+
+      <h4 class="mb-4 text-white">Your Todo</h4>
+
+      <div *ngIf="this.todoT.length === 0; else elseBlock" class="text-center">No Todos to display!!</div>
+      <ng-template #elseBlock>
+        <div class="row">
+          <div *ngFor="let todo of todoT" class="col-sm-4">
+            <div>
+              <!-- <li>{{todo.sno}} - {{todo.title}} - {{todo.desc}} - {{todo.active}}</li> -->
+              <app-todo-item [todo]="todo" (todoDelete)="deleteTodo($event)" (todoCheckbox)="todoToggle($event)">
+              </app-todo-item>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-primary text-white">
+        <h5 class="modal-title" id="exampleModalLongTitle">Add New TODO</h5>
+        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <app-add-todo (todoAdd)="addTodo($event)"></app-add-todo>
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div> -->
+    </div>
+  </div>
 </div>
